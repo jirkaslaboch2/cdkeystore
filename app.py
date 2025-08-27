@@ -14,7 +14,7 @@ from email.mime.multipart import MIMEMultipart
 import uuid
 
 app = Flask(__name__)
-pp.config['SECRET_KEY'] = os.getenv('SECRET_KEY') # Change this to a random secret key
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') # Change this to a random secret key
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = 'uploads'  # For uploading key files in admin
