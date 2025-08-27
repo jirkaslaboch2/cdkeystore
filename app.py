@@ -14,20 +14,20 @@ from email.mime.multipart import MIMEMultipart
 import uuid
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'your_secret_key_here'  # Change this to a random secret key
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///store.db'
+pp.config['SECRET_KEY'] = os.getenv('SECRET_KEY') # Change this to a random secret key
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = 'uploads'  # For uploading key files in admin
 
 # Stripe configuration
-stripe.api_key = 'your_stripe_secret_key_here'  # Replace with your Stripe secret key
-STRIPE_PUBLISHABLE_KEY = 'your_stripe_publishable_key_here'  # Replace with your Stripe publishable key
+stripe.api_key = os.getenv('STRIPE_SECRET_KEY')
+STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY')
 
 # Email configuration (use your own SMTP details, e.g., Gmail)
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USER = 'your_email@gmail.com'
-EMAIL_PASS = 'your_app_password_here'  # Use app password if using Gmail
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_PORT = int(os.getenv('EMAIL_PORT'))
+EMAIL_USER = os.getenv('EMAIL_USER')
+EMAIL_PASS = os.getenv('EMAIL_PASS')
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
