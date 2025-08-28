@@ -49,7 +49,7 @@ class Product(db.Model):
 
 class Key(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id', ondelete='CASCADE'), nullable=False)
     key_code = db.Column(db.String(50), unique=True, nullable=False)
     used = db.Column(db.Boolean, default=False)
 
