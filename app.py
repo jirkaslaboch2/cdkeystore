@@ -296,9 +296,13 @@ def delete_product(product_id):
         return redirect(url_for('index'))
     
     product = Product.query.get_or_404(product_id)
+    # Delete associated keys and purchases
+    Key.query.filter_by(product_id=product_id).delete()
+    Purchase.query.filter_by(product_id=product_id).delete()
+    # Delete the product
     db.session.delete(product)
     db.session.commit()
-    flash('Product deleted.')
+    flash('Product, associated keys, and purchases deleted.')
     return redirect(url_for('admin_dashboard'))
 
 # Admin - Manage users (e.g., make admin)
