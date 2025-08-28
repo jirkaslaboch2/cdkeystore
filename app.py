@@ -17,7 +17,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') # Change this to a random secret key
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['UPLOAD_FOLDER'] = 'uploads'  # For uploading key files in admin
+app.config['UPLOAD_FOLDER'] = '/app/uploads'  # For uploading key files in admin
 
 # Stripe configuration
 stripe.api_key = os.getenv('STRIPE_SECRET_KEY')
