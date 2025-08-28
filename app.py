@@ -56,7 +56,7 @@ class Key(db.Model):
 class Purchase(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id', ondelete='CASCADE'), nullable=False)
     key_id = db.Column(db.Integer, db.ForeignKey('key.id'), nullable=False)
     transaction_id = db.Column(db.String(100), nullable=False)
 
